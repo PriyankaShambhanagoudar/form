@@ -7,9 +7,11 @@ const UsersList = (props) => {
     return (
         <Card className={classes.users}>
             <ul>
+                <h2>Loaded UserDeatils</h2>
                 {props.users.map((user) => (
-                    <li key={user.id}>
-                        {user.name} ({user.age} years old)
+                    <li key={user.id} onClick={props.onRemoveItem.bind(this, user.id)}>
+                        <span>  {user.name}</span>
+                        <span>({user.age} years old)</span>
                     </li>
                 ))}
             </ul>

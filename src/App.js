@@ -6,6 +6,14 @@ import UsersList from './components/Users/UsersList';
 function App() {
   const [usersList, setUsersList] = useState([]);
 
+  // const addUserHandler = (userDetails) => {
+  //   setUsersList((prevUsersList) => {
+  //     return [
+  //       ...prevUsersList,
+  //       { id: Math.random().toString(), ...userDetails },
+  //     ];
+  //   });
+  // };
   const addUserHandler = (uName, uAge) => {
     setUsersList((prevUsersList) => {
       return [
@@ -15,10 +23,16 @@ function App() {
     });
   };
 
+  const removeDetailsHandler = (userDetailsId) => {
+    setUsersList(prevUsersList =>
+      prevUsersList.filter(details => details.id !== userDetailsId)
+    );
+  };
+
   return (
     <div>
       <AddUser onAddUser={addUserHandler} />
-      <UsersList users={usersList} />
+      <UsersList users={usersList} onRemoveItem={removeDetailsHandler} />
     </div>
   );
 }
